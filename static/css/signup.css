@@ -1,0 +1,106 @@
+
+.header-wrapper.signup-page{
+padding-bottom:2rem;
+}
+
+.signup-panel{
+color:#fff;
+width:90%;
+margin:2rem auto;
+border:1px solid #fff;
+/*text-align:center;*/
+text-transform:capitalize;
+padding:1rem;
+background: linear-gradient(94.58deg, rgba(254, 211, 255, 0.138) 1.24%, rgba(254, 211, 255, 0.3) 1.25%, rgba(245, 90, 249, 0.084) 98.94%);
+backdrop-filter: blur(60px);
+/* Note: backdrop-filter has minimal browser support */
+
+border-radius: 13px;
+}
+
+.signup-panel h2{
+font-weight:600;
+font-size:2rem;
+text-align:center;
+margin-bottom:2rem;
+}
+.signup-panel label{
+display:block;
+font-weight:600;
+font-size:var(--sm-font);
+}
+.signup-panel input{
+ margin-bottom:1.2rem;
+ background: linear-gradient(94.58deg, rgba(247, 197, 248, 0.138) 1.24%, rgba(254, 211, 255, 0.3) 1.25%, rgba(250, 199, 251, 0.3) 98.94%);
+backdrop-filter: blur(60px);
+-webkit-backdrop-filter: blur(60px);
+-moz-backdrop-filter: blur(60px);
+/* Note: backdrop-filter has minimal browser support */
+
+border-radius:4px;
+-webkit-border-radius:4px;
+outline:none;
+-webkit-outline:none;
+-moz-outline:none;
+color:#fff;
+font-weight:300;
+font-size:var(--sm-font);
+padding:0.8rem;
+-webkit-padding:0.8rem;
+-moz-padding:0.8rem;
+width:100%;
+}
+.submit-cta button{
+text-align:center;
+display:block;
+width:120px;
+padding:1rem;
+border-radius:8px;
+margin:0 auto;
+font-weight:600;
+font-size:1.2rem;
+background:#BF08C2;
+border-radius:10px;
+color:#fff;
+border:none;
+outline:none;
+text-transform:capitalize;
+margin-top:1rem;
+cursor:pointer;
+}
+
+
+/**************************
+Desktop screen size
+***************************
+*/
+@media(min-width:650px){
+.signup-panel{
+width:80%;
+}
+.double-input{
+display:flex;
+flex-flow:row wrap;
+gap:4%;
+}
+.double-input >*{
+flex:1 1 100%;
+}
+}
+
+
+
+/**************************
+Larger Desktop screen size
+***************************
+*/
+@media(min-width:710px){
+.signup-panel{
+width:60%;
+}
+.double-input >*{
+flex:1 1 48%;
+}
+}
+
+

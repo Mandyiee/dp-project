@@ -1,0 +1,235 @@
+@import url("boiler-plate.css");
+@import url("header.css");
+@import url("signup.css");
+@import url("signin.css");
+@import url("footer.css");
+
+/******************
+index page styles
+******************/
+.search-menu{
+padding:1rem;
+/*margin-top:4rem;
+*/}
+.search-input-container{
+position:relative;
+border:1px solid #ddd;
+margin:0 auto;
+border-radius:10px;
+margin-top:4rem;
+}
+.search-input{
+width:85%;
+border:none;
+outline:none;
+color:#fff;
+font-weight:300;
+background: linear-gradient(90.2deg, rgba(255, 255, 255, 0.1596) 26.4%, rgba(253, 177, 255, 0.3002) 88.89%);
+backdrop-filter: blur(61px);
+-webkit-backdrop-filter: blur(61px);
+-moz-backdrop-filter: blur(61px);
+padding:0.8rem;
+text-indent:1rem;
+border-radius:11px 0px 0px 11px;
+}
+.search-input:hover,
+.search-input:focus-within
+{
+background:#010216;
+}
+.search-input::-webkit-search-cancel-button{
+-webkit-appearance:none;
+height:15px;
+width:15px;
+cursor:pointer;
+display:inline-block;
+background:url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="10" height="10" fill="rgb(255,255,255)"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z"/></svg>') top center / cover no-repeat;
+}
+.search-input-container::after{
+ font-family:"FontAwesome";
+ content:"\f002";
+ position:absolute;
+ width:15%;
+ background: linear-gradient(181.14deg, #DA00DE 0.97%, rgba(218, 0, 222, 0) 116.15%);
+ color:#fff;
+ border-radius:2px 10px 10px 2px;
+ top:0;
+ right:0;
+ padding:0.8rem 1rem;
+ display:inline-block;
+ text-align:center;
+ cursor:pointer;
+}
+.header-caption{
+margin:2rem 0;
+text-align:center;
+color:#fff;
+font-size:var(--xl-font);
+font-weight:300;
+line-height:1.5;
+text-transform:capitalize;
+}
+.cta-buttons{
+padding:1rem;
+}
+.cta-buttons .cta-btn{
+background: linear-gradient(94.58deg, rgba(254, 211, 255, 0.138) 1.24%, rgba(254, 211, 255, 0.3) 1.25%, rgba(245, 90, 249, 0.084) 98.94%);
+backdrop-filter: blur(60px);
+text-transform:capitalize;
+border-radius: 13px;
+border:1px solid #FED1FF;
+transition:background 0.5s;
+}
+.cta-buttons .cta-btn:hover{
+ background:#010216;
+}
+
+
+/*************************
+  quick nav-links section
+**************************/
+.quick-nav-links{
+ text-align:center;
+}
+.quick-nav-links .nav-container ul li{
+margin-bottom:1rem;
+}
+.quick-nav-links a{
+color:#99509A;
+font-size:var(--md-font);
+font-weight:500;
+display:block;
+padding:0.7rem;
+-webkit-padding:0.7rem;
+background: linear-gradient(94.58deg, rgba(254, 211, 255, 0.469) 1.24%, rgba(254, 211, 255, 0.7) 1.25%, rgba(245, 90, 249, 0.196) 98.94%);
+/*backdrop-filter: blur(60px);*/
+/* Note: backdrop-filter has minimal browser support */
+-moz-border-radius:7px;
+-webkit-border-radius:7px;
+border-radius:7px;
+transition:all 0.5s;
+-webkit-border:1px solid transparent;
+border:1px solid transparent;
+}
+.quick-nav-links a:hover{
+-webkit-border:1px solid #99509A;
+-moz-border:1px solid #99509A;
+border:1px solid #99509A;
+background:#FFFFFF;
+}
+
+
+/*************************
+  Create section
+**************************/
+.create-section .create-header{
+justify-content:flex-start;
+align-items:center;
+gap:1%;
+margin:1rem 0;
+}
+/*.create-section .create-header > *{
+flex:50%;
+}*/
+.create-section .create-header .line{
+display:block;
+border-bottom:9px solid #FED3FF;
+flex-basis:70%;
+}
+.create-section .create-body{
+justify-content:space-around;
+}
+.create-section .create-body .box{
+height:150px;
+background:rgba(209, 0, 214, 0.61);
+-moz-box-shadow: 0px 4px 29px #EECEEF;
+-webkit-box-shadow: 0px 4px 29px #EECEEF;
+box-shadow: 0px 4px 29px #EECEEF;
+flex-basis:22%;
+margin-bottom:1rem;
+}
+.create-section .create-footer{
+text-align:initial;
+margin:2rem 0;
+border-radius: 11px;
+-moz-box-shadow: 0px 4px 29px #EECEEF;
+-webkit-box-shadow: 0px 4px 29px #EECEEF;
+box-shadow: 0px 4px 29px #EECEEF;
+padding:1rem;
+height:150px;
+}
+
+/*************************
+  gallery wrapper
+**************************/
+.gallery-wrapper{
+padding:2rem;
+}
+.gallery-wrapper .gallery{
+ height:150px;
+ background:#99509A;
+ margin-bottom:1rem;
+}
+
+
+
+
+
+
+
+
+
+/*************************
+ Tablet Device
+**************************/
+@media(min-width:380px){
+.quick-nav-links .nav-container ul{
+display:flex;
+flex-flow:row wrap;
+gap:4%;
+}
+.quick-nav-links .nav-container ul > *{
+flex:1 1 48%;
+}
+.gallery-wrapper{
+display:flex;
+flex-flow:row wrap;
+justify-content:center;
+gap:4%;
+}
+.gallery-wrapper > *{
+flex:1 1 48%;
+}
+}
+
+
+
+
+
+
+/*************************
+ Desktop device
+**************************/
+@media(min-width:650px){
+.search-input-container{
+width:40%;
+}
+.quick-nav-links .nav-container ul{
+gap:0%;
+}
+.quick-nav-links .nav-container ul > *{
+flex:22%;
+}
+
+.quick-nav-links .nav-container ul li{
+padding:0 1rem;
+}
+.quick-nav-links .nav-container ul li + li{
+border-left:3px solid #afafaf;
+-webkit-border:3px solid #afafaf;
+-moz-border:3px solid #afafaf;
+}
+.gallery-wrapper > *{
+flex:0 0 22%;
+}
+}

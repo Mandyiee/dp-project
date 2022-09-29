@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>signup</title>
+</head>
+<body>
+
+<header class="header-wrapper index-page signup-page">
+	<div class="site-header">
+
+		<div class="navigation-container main-nav">
+			<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="./index.html">Create Flyer</a></li>
+					<li><a href="./trending.html">Trending</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="./createdp.html">Create DP flyer</a></li>
+					<li><a href="./signup.html">Sign Up</a></li>
+                    <li><a href="./signin.html">Login</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="signup-panel">
+			<div class="signup-wrapper">
+				<h2 class="form-caption">sign up</h2>
+				{% for message in messages %}
+				<h5 class="validation-error" style="color: red;">{{message}}</h5>
+				{% endfor %}
+				<form action="/signup" method="POST">
+					{% csrf_token %}
+					<div class="single-input">
+						<div class="row-container">
+							<label for="username">Username</label>
+							<input type="username" name="username" id="username" required>
+						</div>
+					</div>
+					<div class="double-input">
+					  <div class="row-container">
+						<label for="name">Name</label>
+						<input type="text" name="firstname" id="name" required>
+					   </div>
+					   <div class="row-container">
+					   	<label for="surname">Surname</label>
+					   	<input type="text" name="lastname" id="surname" required>
+					   </div>
+					</div>
+					<div class="single-input">
+						<div class="row-container">
+							<label for="email">E-mail</label>
+							<input type="email" name="email" id="email" required>
+						</div>
+					</div>
+					<div class="double-input">
+					  <div class="row-container">
+						<label for="password">Password</label>
+						<input type="password" name="password" id="password" required>
+					   </div>
+					   <div class="row-container">
+					   	<label for="confirmPassword">Confirm Password</label>
+					   	<input type="confirmPassword" name="password2" id="confirmPassword" required>
+					   </div>
+					</div>
+					<div class="submit-cta">
+					<button type="submit">sign up</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+</header>
+
+<main>
+	<section class="section-wrapper">
+		<!-- empty for now -->
+	</section>
+
+</main>
+
+
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+</body>
+</html>

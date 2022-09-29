@@ -1,0 +1,15 @@
+/*****************
+footer styles
+******************/
+.footer-wrapper{
+background:url("../images/headerbg-image.png") center / cover no-repeat #010216;
+}
+.footer-wrapper.index-page{
+padding:0;
+}
+.footer-nav-container{
+height:100px;
+}
+.flex-center.footer-flex{
+padding:1rem;
+}
