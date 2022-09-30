@@ -8,3 +8,10 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.user.username
+    
+class Displaypicture(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    date_created = models.DateTimeField()
+    
+    

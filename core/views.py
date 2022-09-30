@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Profile
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required(login_url='signin')
 def index(request):
     return render(request,'index.html')
 
@@ -44,18 +47,15 @@ def signout(request):
 
 def signin(request):
     if request.method == 'POST':
-        email = request.POST['username']
+        username = request.POST['username']
         password = request.POST['password']
-        print(email)
-        print(password)
-        user = auth.authenticate(email=email,password=password)
-        print(user)
+        user = auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request,user)
             return redirect('index')
         else:
             messages.info(request, 'Credentials Invalid')
-            return redirect('signin')
+            return redirect('signin') 
     return render(request,'signin.html')
 def signout(request):
     auth.logout(request)

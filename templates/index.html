@@ -1,7 +1,5 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
 
-
-
 	<section class="section-wrapper">
 		<div class="quick-nav-links">
 			<div class="nav-container">
@@ -12,6 +10,8 @@
 				</ul>
 			</div>
 		</div>
+		{{ user.socialaccount_set.all.0.extra_data.name }}
+		{{ request.user.last_name}} {{ user.get_provider }}
 		<div class="gallery-wrapper">
 		 <div class="gallery">
 			<div class="img-container">
