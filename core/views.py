@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Flier, Profile
+from .models import Category, Flier, Profile
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 import json, base64
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from html2image import Html2Image
@@ -42,8 +43,10 @@ def publish(request):
         hashtag2 = flier_obj['hashtag2']
         htmlFile = flier_obj['htmlFile']
         imageString = flier_obj['file']
-        
+        category = flier_obj['category']
         flier, created = Flier.objects.get_or_create(user=user,event_name=event_name,description=description,hashtag1=hashtag1,hashtag2=hashtag2,htmlFile=htmlFile,imageString=imageString)
+        categoryModel, created = Category.objects.get_or_create(name=category)
+        flier.category.add(categoryModel.id)
         flier.save()
         return redirect('visitor1/' + str(flier.id))
     return render(request,'publish.html')
@@ -76,3 +79,20 @@ def visitor1(request,pk):
 @login_required(login_url='accounts/login')
 def visitor2(request,pk):
     return render(request,'visitor2.html')
+
+@login_required(login_url='accounts/login')
+def category(request):
+    return render(request,'browse.html')
+
+@login_required(login_url='accounts/login')
+def categories(request,cat):
+    try:
+        category = Category.objects.get(name=cat)
+    except ObjectDoesNotExist:
+        category = None
+    fliers = Flier.objects.filter(category=category)
+    
+    context = {
+        'fliers':fliers
+    }
+    return render(request,'music.html',context)

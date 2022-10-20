@@ -12,5 +12,7 @@ urlpatterns = [
      path('publish',views.publish,name='publish'), 
      path('visitor1/<int:pk>',views.visitor1,name='visitor1'),
      path('visitor2/<int:pk>',views.visitor2,name='visitor2'),
+     path('category',views.category,name='category'),
+     path('category/<str:cat>',views.categories,name='categories'),
      #path('',views.,name=''),  
 ]

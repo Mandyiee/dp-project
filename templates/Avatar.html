@@ -139,7 +139,7 @@ window.onload = () => {
 }
 
 document.getElementById('next_button').addEventListener('click', () => {
-    let flier_obj = JSON.parse(localStorage.getItem('flier')
+    let flier_obj = JSON.parse(localStorage.getItem('flier'))
    let data = document.querySelector('.flier__container').innerHTML
     flier_obj.htmlFile = data
     localStorage.setItem('flier', JSON.stringify(flier_obj)) 

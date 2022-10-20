@@ -1105,11 +1105,9 @@ dashboard-container
   outline: none;
   border-radius: 4px;
   margin-top: 7px;
-transition: 0.5s;
+
 }
-.description-con textarea:hover, .description-con textarea:focus{
-  border: 2px solid white;
-}
+
 .description-con > *{
   display: block;
 }

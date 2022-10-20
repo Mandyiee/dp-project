@@ -8,7 +8,12 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.user.username
+
+class Category(models.Model):
+    name = models.CharField(max_length=150)
     
+    def __str__(self):
+        return self.name
     
 class Flier(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -17,6 +22,7 @@ class Flier(models.Model):
     image = models.ImageField(upload_to='dp_fliers', default='r.jpg')
     imageString  = models.TextField()
     htmlFile  = models.TextField(blank=True,null=True)
+    category = models.ManyToManyField(Category)
     no_of_clicks  = models.IntegerField(default=0)
     hashtag1  = models.CharField(max_length=100,blank=True,null=True)
     hashtag2  = models.CharField(max_length=100,blank=True,null=True)

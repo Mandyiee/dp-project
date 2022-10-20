@@ -145,6 +145,7 @@
         let flier_obj = JSON.parse(localStorage.getItem('flier'))
         document.querySelector('.flier__container').innerHTML = flier_obj.htmlFile
         document.querySelector('input[type=text]').value = JSON.stringify(flier_obj)
+        localStorage.clear()
     } else {
         window.location.href = '/create'
     }

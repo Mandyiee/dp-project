@@ -14,6 +14,9 @@
     cursor: text;
     background: green;
 }
+select option{
+    text-transform: capitalize;
+}
     </style>
 </head>
 <body>
@@ -117,8 +120,20 @@
             </div>
             <div class="select" style="margin-top: 1rem;">
                 <label for="cat">categories</label><br>
-                <select name="" id="cat">
-                    <option value=""></option>
+                <select name="category" id="cat" required>
+                    <option value="party" selected>Party</option>
+                    <option value="politics">Politics</option>
+                    <option value="music">Music</option>
+                    <option value="religion">Religion</option>
+                    <option value="business">Business</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="food and drinks">Food and Drinks</option>
+                    <option value="art and culture">Art and Culture</option>
+                    <option value="movements">Movements</option>
+                    <option value="socials">Socials</option>
+                    <option value="film">Film</option>
+                    <option value="music">Music</option>
+                    <option value="others">Others</option>
                 </select>
             </div>
             <div style="margin-top: 1rem;">
@@ -162,8 +177,7 @@
             document.querySelector('textarea[name=description]').value = flier_obj.description
             document.querySelector('input[name=hashtag1]').value = flier_obj.hashtag1
             document.querySelector('input[name=hashtag2]').value = flier_obj.hashtag2
-            document.querySelector('input[type=file]').files[0] = flier_obj.file
-            document.getElementById('placeholder-img').src = flier_obj.file
+            document.querySelector('input[name=category]').value = flier_obj.category
         } 
     }
     //CKEDITOR.replace('content')
@@ -207,11 +221,13 @@ let event_name = formData.get('event_name');
 let hashtag1 = formData.get('hashtag1')
 let hashtag2 = formData.get('hashtag2')
 let description = formData.get('description')
+let category = formData.get('category')
 let flier = {
     'event_name': event_name,
     'description':description,
     'hashtag1': hashtag1,
-    'hashtag2': hashtag2
+    'hashtag2': hashtag2,
+    'category': category
 }
 
 let file 

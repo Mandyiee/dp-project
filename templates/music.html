@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./images/huloex-logo.png" type="image/icon" />
-    <link
-      href="./font-awesome/font-awesome/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <link href="./css/index.css" rel="stylesheet" />
-    <title>DP</title>
-  </head>
+{% extends 'main.html' %} {% block content %} {% load static %}
   <body>
     <header class="header-wrapper index-page browse__page">
       <div class="site-header">
@@ -126,18 +113,4 @@
       </div>
     </main>
     <div class="empty"></div>
-    <footer class="footer-wrapper index-page">
-      <div class="footer-nav-container">
-        <nav>
-          <ul class="flex-center footer-flex">
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
-    <script src="./js/header.js"></script>
-  </body>
-</html>
+    {% endblock content %}

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./images/huloex-logo.png" type="image/icon" />
-    <link
-      href="./font-awesome/font-awesome/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <link href="./css/index.css" rel="stylesheet" />
-    <title>DP</title>
-  </head>
+{% extends 'main.html' %} {% block content %} {% load static %}
   <body>
     <header class="header-wrapper index-page browse__page">
       <div class="site-header">
@@ -46,58 +33,46 @@
       <div class="floating__condition">
         <h1>Browse Categories</h1>
         <div class="floating__div-content">
-          <div class="floating__condition-divs"><img src="./images/Rectangle 30.png" alt="" />
+          <a href="/category/politics">
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 30.png'%}" alt="" />
             <h1 class="floating__items">politics</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 63.png" alt="" />
+        </a>
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 63.png'%}" alt="" />
            <h1 class="floating__items">music</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 64.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 64.png'%}" alt="" />
            <h1 class="floating__items">business</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 65.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 65.png' %}" alt="" />
            <h1 class="floating__items">religion</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 66.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 66.png'%}" alt="" />
            <h1 class="floating__items">food and drinks </h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 67.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 67.png'%}" alt="" />
            <h1 class="floating__items">art and culture</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 68.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 68.png'%}" alt="" />
            <h1 class="floating__items">movements</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 69.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 69.png'%}" alt="" />
            <h1 class="floating__items">socials</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 70.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 70.png'%}" alt="" />
            <h1 class="floating__items">fashion</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 71.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 71.png' %}" alt="" />
            <h1 class="floating__items">film</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 72.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 72.png'%} " alt="" />
            <h1 class="floating__items">others</h1>
           </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 73.png" alt="" />
+          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 73.png' %}  " alt="" />
            <h1 class="floating__items">music</h1>
           </div>
         </div>
       </div>
     </main>
     <div class="empty"></div>
-    <footer class="footer-wrapper index-page">
-      <div class="footer-nav-container">
-        <nav>
-          <ul class="flex-center footer-flex">
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-            <li><a href="#">site map</a></li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
-    <script src="./js/header.js"></script>
-  </body>
-</html>
+    {% endblock content %}
