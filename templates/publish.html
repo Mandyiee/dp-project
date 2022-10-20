@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.theme.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>set avatar</title>
+   
+</head>
+<body>
+    
+	
+<header class="header-wrapper dashboard-page">
+	<div class="site-header">
+		<div class="navigation-container main-nav">
+		<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="./index.html">Create Flyer</a></li>
+					<li><a href="./trending.html">Trending</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="./createdp.html">Create DP flyer</a></li>
+					
+				</ul>
+				
+					<h4 class="logged__in">Chinonso<i class="fa fa-chevron-right " style="font-size: 90%; margin:auto; margin-left: 0.3rem;" aria-hidden="true"></i>
+						<ul class="logged__out">
+							<li>dashboard</li>
+							<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+								<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1rem;"></i></li> 
+								<aside class="mainaside">
+									<li>All My Dp</li>
+									<li>Create</li>
+								</aside>
+							</ul>
+							<li>My profile</li>
+							<li>Settings</li>
+							<li>Logout</li>
+						</ul>
+					</h4>
+				
+			</nav>
+		</div>
+		
+		
+
+</div>
+<div class="backdrop"></div>
+</header>
+<main class="dashb__main">
+    <div class="section-wrapper__grid " id="steady" style="height: auto;">
+        <div class="section-wrapper__grid1">
+            <ul>
+                <li>dashboard</li>
+                <ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+                    <li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1.6rem;"></i></li> 
+                    <aside class="mainaside">
+                        <li>All My Dp</li>
+                        <li>Create</li>
+                    </aside>
+                </ul>
+                <li>My profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    <button type="button" class="button__create" style="display: none;">Create</button>
+    
+   <div class="create__dp-section">
+    <h2>create DP</h2>
+    <section class="create__dp-container">
+        <ol class="create__dp-nav__section">
+            <li>basic information</li>
+            <li>set avatar location</li>
+            <li>Preview</li>
+            <li class="li_active">Publish</li>
+        </ol>
+           <!-- <div class="avatar__shape">
+            <p>choose shape of avatar</p>
+            <p>square <span id="squarely" ></span></p>
+            <p>circle <span id="circler"></span></p>
+           </div> -->
+          <div class="flier__container">
+            <!-- <div class="image_preview dragable" >
+                <img src="./images/final.png" alt="">
+                 <div id="container1">
+                    
+                        <div class="image__inspect" id="draggable-elem">
+                         
+                            <img src="./images/inspect.png" alt="">
+                            <img src="./images/inspect1.png" alt="">
+                            <img src="./images/inspect2.png" style="width: 20px;" alt="">
+                           
+                            <div class="dragable__display selector2">
+                            </div>
+                        </div>
+                   
+                  </div>
+            </div>
+             -->
+            
+            
+          </div>
+          <div style="display: flex; justify-content:flex-end;">
+                <a href="./preview.html"> <button type="button" style="background-color: transparent;color:white;">previous</button></a>
+                <form action="/publish" method="POST">
+                   {% csrf_token %} 
+                   <input type="text" name="flier" style="height: 0px; width:0px;overflow:hidden;">
+                   <button type="submit" >Publish</button>
+                  </form>
+           </div>
+
+    </section>
+   </div>
+        
+</main>
+<div class="floatin__div" style="height: 0; width:0;"></div>
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.13.2.custom/jquery-ui.js' %}"></script>
+<script>
+  window.onload = () => {
+    if (localStorage.getItem('flier')) { 
+        let flier_obj = JSON.parse(localStorage.getItem('flier'))
+        document.querySelector('.flier__container').innerHTML = flier_obj.htmlFile
+        document.querySelector('input[type=text]').value = JSON.stringify(flier_obj)
+    } else {
+        window.location.href = '/create'
+    }
+}
+
+</script>
+</body>
+</html>

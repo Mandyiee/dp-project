@@ -1,5 +1,48 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
-
+<header class="header-wrapper index-page">
+	<div class="site-header">
+		<div class="navigation-container main-nav">
+		<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="/alldp">View All Dashboard</a></li>
+					<li><a href="/trending">Trending</a></li>
+					<li><a href="/categories">Categories</a></li>
+					<li><a href="/create">Create DP flyer</a></li>
+					{% if user.is_authenticated  %}
+					<li><a href="/accounts/logout">Sign-Out</a></li>
+					{% else %}
+					<li><a href="/accounts/login">Sign-Up</a></li>
+                    <li><a href="/accounts/signup">Sign-In</a></li>
+					
+					{% endif %}
+					
+				</ul>
+			</nav>
+		</div>
+		<div class="search-menu">
+			<div class="search-input-container">
+			<input class="search-input" type="search" name="search" placeholder="Search">
+		    </div>
+		</div>
+		<div class="header-caption">
+			<p>
+				get <strong> customised 
+				<br> 
+				flyer </strong> for <strong> <br> your event </strong>
+			</p>
+		</div>
+		<div class="cta-buttons flex-center">
+		  <div class="btn-container">
+			<a class="cta-btn" href="/create">create flyer</a>
+		 </div>
+		 <div class="btn-container">
+			<a class="cta-btn" href="./signup.html">get started</a>
+		 </div>
+		</div>
+	</div>
+</header>
+<main>
 	<section class="section-wrapper">
 		<div class="quick-nav-links">
 			<div class="nav-container">
@@ -10,21 +53,15 @@
 				</ul>
 			</div>
 		</div>
-		{{ user.socialaccount_set.all.0.extra_data.name }}
-		{{ request.user.last_name}} {{ user.get_provider }}
+		
 		<div class="gallery-wrapper">
+			{% for flier in fliers %}
 		 <div class="gallery">
-			<div class="img-container">
-			</div>
+			<a href="/visitor1/{{flier.id}}"><div class="img-container" style="background-image:url('{{ flier.imageString }}');background-size: 100% 100%;">
+			</div></a>
+			
 		 </div>
-         <div class="gallery">
-			<div class="img-container">
-			</div>
-		 </div>
-		 <div class="gallery">
-			<div class="img-container">
-			</div>
-		 </div>
+		 {% endfor %}
 		</div>
 	</section>
 
@@ -52,4 +89,5 @@
 		    </div>
 		</div>
 	</section>
+</main>
 	{% endblock content %}

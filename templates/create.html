@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>createdp</title>
+    <style>
+        .cke_editable {
+    cursor: text;
+    background: green;
+}
+    </style>
+</head>
+<body>
+	
+<header class="header-wrapper dashboard-page">
+	<div class="site-header">
+		<div class="navigation-container main-nav">
+		<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="./index.html">Create Flyer</a></li>
+					<li><a href="./trending.html">Trending</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="./createdp.html">Create DP flyer</a></li>
+					
+				</ul>
+				
+					<h4 class="logged__in">Chinonso<i class="fa fa-chevron-right " style="font-size: 90%; margin:auto; margin-left: 0.3rem;" aria-hidden="true"></i>
+						<ul class="logged__out">
+							<li>dashboard</li>
+							<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+								<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1rem;"></i></li> 
+								<aside class="mainaside">
+									<li>All My Dp</li>
+									<li>Create</li>
+								</aside>
+							</ul>
+							<li>My profile</li>
+							<li>Settings</li>
+							<li>Logout</li>
+						</ul>
+					</h4>
+				
+			</nav>
+		</div>
+		
+		
+
+</div>
+<div class="backdrop"></div>
+</header>
+<main class="dashb__main">
+    <div class="section-wrapper__grid " id="steady" style="height: auto;">
+        <div class="section-wrapper__grid1">
+            <ul>
+                <li>dashboard</li>
+                <ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+                    <li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1.6rem;"></i></li> 
+                    <aside class="mainaside">
+                        <li>All My Dp</li>
+                        <li>Create</li>
+                    </aside>
+                </ul>
+                <li>My profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    <button type="button" class="button__create" style="display: none;">Create</button>
+    
+   <div class="create__dp-section">
+    <h2>create DP</h2>
+    <section class="create__dp-container">
+        <ol class="create__dp-nav__section">
+            <li>basic information</li>
+            <li>set avatar location</li>
+            <li>set name preferance</li>
+            <li>preview and publish</li>
+        </ol>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="name">Event Name</label><br>
+            <input type="text" id="name" placeholder="Name" name="event_name" minlength="10" maxlength="200" required>
+            <div class="file__upload" >
+                <div class="file__upload-content">
+                    <label style="margin-top: 0.5rem; display:block;position: relative;">upload your flier</label>
+                     <label for="uploaded" class="uploadedfile">
+                    <div style="width:100%;height:100%;position:absolute;z-index:-11;opacity:0.5;"><img src=""  srcset="" id="placeholder-img" style="width:100%;height:100%;"></div>
+
+                        <div class="clickupload">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                              </svg>
+                              <p>click to upload</p>
+                        </div>
+                        <input type="file" name="image" class="imginp" id="uploaded" style="display: none;" accept="image/*" required>
+                    </label>
+                </div>
+                <div class="file__upload-content1">
+                    <label for="loading..">upload</label>
+                    <progress min="0" max="100" value="0" id="progress" style="transition:ease 1s;"></progress>
+                    <span class="progress__indicator"></span>
+                    <p>Note: Maximum size of the image should be 10MB</p>
+                </div>
+                
+            </div>
+           
+            <div class="description-con">
+                <label for="description">descrption</label>
+                <textarea name="description" id="" cols="6" rows="6" minlength="30" required></textarea>
+            </div>
+            <div class="select" style="margin-top: 1rem;">
+                <label for="cat">categories</label><br>
+                <select name="" id="cat">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div style="margin-top: 1rem;">
+                <label for="hash1">Hashtag</label><br>
+                <input type="text" placeholder="Name" name="hashtag1" id="hash1" required>
+            </div>
+            <div style="margin-top: 1rem;">
+                <label for="hash2">Hashtag</label><br>
+                <input type="text" placeholder="Name" name="hashtag2" id="hash2" required>
+            </div>
+           <div style="display: flex; justify-content:flex-end;">
+            <button type="submit">Next</button>
+           </div>
+        </form>
+    </section>
+   </div>
+        
+</main>
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static '/js/index.js' %}"></script>
+<!-- <script src="{% static '/js/ckeditor/ckeditor.js' %}"></script> -->
+<script src="{% static '/js/jquery-ui-1.13.2.custom/jquery-ui.js' %}"></script>
+<script>
+    window.onload = () => {
+        //localStorage.clear()
+        if (localStorage.getItem('flier')) {
+            flier_obj = JSON.parse(localStorage.getItem('flier'))
+            document.querySelector('input[name=event_name]').value = flier_obj.event_name
+            document.querySelector('textarea[name=description]').value = flier_obj.description
+            document.querySelector('input[name=hashtag1]').value = flier_obj.hashtag1
+            document.querySelector('input[name=hashtag2]').value = flier_obj.hashtag2
+            document.querySelector('input[type=file]').files[0] = flier_obj.file
+            document.getElementById('placeholder-img').src = flier_obj.file
+        } 
+    }
+    //CKEDITOR.replace('content')
+ 
+    let imgInp = document.querySelector('.imginp')
+    let place = document.getElementById('placeholder-img')
+    
+    imgInp.onchange = evt => {
+        
+        const [file] = imgInp.files
+        if (file) {
+            let size = file.size/ 1024 / 1024
+            if (size > 10) {
+                let progress = document.querySelector('.file__upload-content1 progress')
+                place.src = ''
+                progress.value = 0
+                progress.style.border = '1px solid red'
+            } else {
+                let progress = document.querySelector('.file__upload-content1 progress')
+                place.src = URL.createObjectURL(file)
+                let i = 0
+                while (i != 100) {
+                    progress.value = 100
+                    //let interval = setInterval(function () {progress.value += 10}, 1000);
+                    i += 10
+                }
+            }
+        } else {
+            let progress = document.querySelector('.file__upload-content1 progress')
+            place.src = ''
+            progress.value = 0
+            
+        }
+    }
+    const form = document.querySelector('form')
+    
+form.onsubmit = (e) => {
+e.preventDefault()
+let formData = new FormData(form);
+let event_name = formData.get('event_name');
+let hashtag1 = formData.get('hashtag1')
+let hashtag2 = formData.get('hashtag2')
+let description = formData.get('description')
+let flier = {
+    'event_name': event_name,
+    'description':description,
+    'hashtag1': hashtag1,
+    'hashtag2': hashtag2
+}
+
+let file 
+const imgPath = document.querySelector('input[type=file]').files[0];
+const reader = new FileReader();
+reader.readAsDataURL(imgPath)
+reader.addEventListener("load", function () {
+    // convert image file to base64 string and save to localStorage
+   flier.file = reader.result
+   localStorage.setItem('flier', JSON.stringify(flier)) 
+   window.location.href = '/avatar'
+}, false);
+}
+</script>
+</body>
+</html>

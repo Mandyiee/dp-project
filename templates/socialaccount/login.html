@@ -29,18 +29,40 @@
 			</nav>
 		</div>
 
-		<div class="signin-panel">
-			<div class="signin-wrapper">
-				<h2 class="form-caption">sign in</h2>
-				<div class="google-signin">
-					<a href="{% url 'account_login' %}">sign in with <strong>Google</strong></a>
+		<div class="signin-panel" style="margin-top:40px;">
+			<div class="signin-wrapper" style="height:55vh;display:grid;place-items:center;">
+				
+				{% comment %} <div class="google-signin">
+					<a href="/accounts/google/login/">sign in with <strong>Google</strong></a>
 					<a href="{% provider_login_url 'google' %}">sign in with <strong>Google</strong></a>
-				</div>
+				</div> {% endcomment %}
 
 				{% for message in messages %}
 				<h5 class="validation-error" style="color: red;">{{message}}</h5>
 				{% endfor %}
-				<form action="/signin" method="POST">
+        
+{% load i18n %}
+
+{% comment %} {% block head_title %}{% trans "Sign In" %}{% endblock %} {% endcomment %}
+
+{% block content %}
+{% if process == "connect" %}
+<h1 style="text-align:center;padding:1.2rem 10px;">{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+
+<p style="text-align:center;padding:1rem 10px;">{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+{% else %}
+<h1 style="text-align:center;padding:1.2rem 10px;">{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+
+<p style="text-align:center;padding:1rem 10px;">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+{% endif %}
+
+<form method="post" style="text-align:center;">
+  {% csrf_token %}
+  <button type="submit" style="text-align:center;outline:none;border:2px solid #fff;background:transparent;padding:9px 12px;border-radius:4px;color:white;">{% trans "Continue" %}</button>
+</form>
+{% endblock %}
+
+				{% comment %} <form action="/signin" method="POST">
 					{% csrf_token %}
 					<div class="single-input">
 					  <div class="row-container">
@@ -63,7 +85,7 @@
 					<div class="account-btn">
 						<a href="/signup">create account</a>
 					</div>
-				</form>
+				</form> {% endcomment %}
 			</div>
 		</div>
 		</div>

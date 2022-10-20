@@ -1,44 +1,90 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./images/huloex-logo.png" type="image/icon"/>
-    <link href="./font-awesome/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="./css/index.css" rel="stylesheet">
-    <title>dashboard</title>
+	<link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>DP-dashboard</title>
 </head>
 <body>
-
-<header class="header-wrapper index-page signup-page">
+	
+<header class="header-wrapper dashboard-page">
 	<div class="site-header">
-
 		<div class="navigation-container main-nav">
+		<div class="bar-btn">&#9776;</div>
 			<nav>
 				<ul class="nav-menu">
-					<li><a href="./index.html">Create Flyer</a></li>
-					<li><a href="./trending.html">Trending</a></li>
-					<li><a href="./categories.html">Categories</a></li>
-					<li><a href="./createdp.html">Create DP flyer</a></li>
-					<li><a href="./signup.html">Sign Up</a></li>
-                    <li><a href="./signin.html">Login</a></li>
+					<li><a href="/alldp">View All Dashboard</a></li>
+					<li><a href="/trending">Trending</a></li>
+					<li><a href="/categories">Categories</a></li>
+					<li><a href="/create">Create DP flyer</a></li>
+					
 				</ul>
+				
+					<h4 class="logged__in">Chinonso<i class="fa fa-chevron-right " style="font-size: 90%; margin:auto; margin-left: 0.3rem;" aria-hidden="true"></i>
+						<ul class="logged__out">
+							<li>dashboard</li>
+							<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+								<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1rem;"></i></li> 
+								<aside class="mainaside">
+									<li>All My Dp</li>
+									<li>Create</li>
+								</aside>
+							</ul>
+							<li>My profile</li>
+							<li>Settings</li>
+							<li>Logout</li>
+						</ul>
+					</h4>
+				
 			</nav>
 		</div>
-
 		
+		
+<div class="section-wrapper__grid">
+	<div class="section-wrapper__grid1">
+		<ul>
+			<li>dashboard</li>
+			<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+				<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1.6rem;"></i></li> 
+				<aside class="mainaside">
+					<li>All My Dp</li>
+					<li>Create</li>
+				</aside>
+			</ul>
+			<li>My profile</li>
+			<li>Settings</li>
+			<li>Logout</li>
+		</ul>
+	</div>
+	<div class="section-wrapper__grid2">
+		<div class="section__grid-flex1">
+			<div class="dp__container">
+				<div class="dp__container-box"></div>
+				<div class="dp__container-box"></div>
+				<div class="dp__container-box"></div>
+			</div>
+			<div class="dp__container-mainbox">
+				<button type="button" class="button__create">Create</button>
+			</div>
 		</div>
+		<div class="section__grid-flex1 viewed__dp">
+			<div class="create__dp-box"></div>
+			<div class="create__dp-box"></div>
+			<div class="create__dp-box"></div>
+		</div>
+
+	</div>
+	
+</div>
+<div class="backdrop"></div>
 </header>
-
 <main>
-	<section class="section-wrapper">
-		<!-- empty for now -->
-	</section>
-
 </main>
-
-
 <footer class="footer-wrapper index-page">
 	<div class="footer-nav-container">
 		<nav>
@@ -51,6 +97,8 @@
 		</nav>
 	</div>
 </footer>
-<script src="./index.js"></script>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static './js/index.js' %}"></script>
+
 </body>
 </html>

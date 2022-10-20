@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon" />
+  <link href="{% static 'css/index.css' %}" rel="stylesheet">
+  <link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <style>
+    article img {
+      width: 100vw !important;
+      height: 100vh !important;
+    }
+    .image_preview {
+      height:100%;
+      width:100%;
+    }
+    .image_preview #the_image {
+      height:100%;
+      width:100%;
+    }
+  </style>
+  <title>DP</title>
+</head>
+
+<body>
+  <header class="header-wrapper index-page browse__page">
+    <div class="site-header">
+      <div class="navigation-container main-nav">
+        <div class="bar-btn">&#9776;</div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="./index.html">Create Flyer</a></li>
+            <li><a href="./trending.html">Trending</a></li>
+            <li><a href="./categories.html">Categories</a></li>
+            <li><a href="./createdp.html">Create DP flyer</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+            <li><a href="./signin.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="search-menu">
+        <div class="search-input-container">
+          <input class="search-input" type="search" name="search" placeholder="Search" />
+        </div>
+      </div>
+
+
+    </div>
+  </header>
+  <main class="floatin__div" id="visitor">
+    <div class="floating__condition">
+      <h1>Peter Obi Enugu Mega Rally</h1>
+      <div class="iconss">
+        <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
+        <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
+        <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
+        <span><i class="fa fa-share" aria-hidden="true"></i> share</span>
+      </div>
+      <div class="peter__obi-img">
+        <div class="flier_con" style="height:500px;width:80vh;position:relative;z-index:1000;">
+          {{ flier.htmlFile|safe }}
+        </div>
+        <section>
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <label for="name">enter your name</label><input type="text" required>
+            <label for="flier-img">
+              <input type="file" name="" id="flier-img" required>
+            </label>
+
+
+            <button class="generate" type="submit">Generate DP</button>
+          </form>
+        </section>
+        <article>
+
+        </article>
+      </div>
+    </div>
+
+    </div>
+  </main>
+  <div class="empty visitor__empty"> </div>
+  <footer class="footer-wrapper index-page">
+    <div class="footer-nav-container">
+      <nav>
+        <ul class="flex-center footer-flex">
+          <li><a href="#">site map</a></li>
+          <li><a href="#">site map</a></li>
+          <li><a href="#">site map</a></li>
+          <li><a href="#">site map</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="{% static 'js/header.js' %}"></script>
+  <script>
+    //file = document.querySelector('input[type=file]')
+    let form = document.querySelector('form')
+    form.onsubmit = (e) => {
+      e.preventDefault()
+      const imgPath = document.querySelector('input[type=file]').files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(imgPath)
+
+      reader.addEventListener("load", function () {
+        let container = document.querySelector('.dragable__display.selector2.ui-resizable')
+        container.style.backgroundImage = "url(" + reader.result + ")";
+        container.style.backgroundSize = '100% 100%'
+      }, false);
+
+      // document.querySelector('article').textContent= document.querySelector('.flier_con').innerHTML
+
+      const body = document.querySelector('article')
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = canvas.height = 500;
+      const targetImg = document.createElement("img");
+      body.appendChild(targetImg);
+      const ble =   document.querySelector('.flier_con').innerHTML
+      const newImg = new Image()
+      newImg.addEventListener("load", onNewImageLoad);
+      newImg.src =
+        "data:image/svg+xml," +
+        encodeURIComponent(
+          `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+            <foreignObject width="100%" height="100%">
+              <div xmlns="http://www.w3.org/1999/xhtml">   
+            ${ble}
+              </div>
+            </foreignObject></svg>`
+        );
+      
+     
+      function onNewImageLoad() {
+        console.log(12345)
+        ctx.drawImage(this, 0, 0);
+        console.log(canvas.toDataURL())
+        targetImg.src = canvas.toDataURL();
+        console.log(canvas.toDataURL())
+        console.log(123)
+      }
+      
+    }
+  </script>
+</body>
+
+</html>

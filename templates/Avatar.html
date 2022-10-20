@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.theme.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>set avatar</title>
+   
+</head>
+<body>
+    
+	
+<header class="header-wrapper dashboard-page">
+	<div class="site-header">
+		<div class="navigation-container main-nav">
+		<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="./index.html">Create Flyer</a></li>
+					<li><a href="./trending.html">Trending</a></li>
+					<li><a href="./categories.html">Categories</a></li>
+					<li><a href="./createdp.html">Create DP flyer</a></li>
+					
+				</ul>
+				
+					<h4 class="logged__in">Chinonso<i class="fa fa-chevron-right " style="font-size: 90%; margin:auto; margin-left: 0.3rem;" aria-hidden="true"></i>
+						<ul class="logged__out">
+							<li>dashboard</li>
+							<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+								<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1rem;"></i></li> 
+								<aside class="mainaside">
+									<li>All My Dp</li>
+									<li>Create</li>
+								</aside>
+							</ul>
+							<li>My profile</li>
+							<li>Settings</li>
+							<li>Logout</li>
+						</ul>
+					</h4>
+				
+			</nav>
+		</div>
+		
+		
+
+</div>
+<div class="backdrop"></div>
+</header>
+<main class="dashb__main">
+    <div class="section-wrapper__grid " id="steady" style="height: auto;">
+        <div class="section-wrapper__grid1">
+            <ul>
+                <li>dashboard</li>
+                <ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
+                    <li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1.6rem;"></i></li> 
+                    <aside class="mainaside">
+                        <li>All My Dp</li>
+                        <li>Create</li>
+                    </aside>
+                </ul>
+                <li>My profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    <button type="button" class="button__create" style="display: none;">Create</button>
+    
+   <div class="create__dp-section">
+    <h2>create DP</h2>
+    <section class="create__dp-container">
+        <ol class="create__dp-nav__section">
+            <li>basic information</li>
+            <li>set avatar location</li>
+            <li>set name preferance</li>
+            <li>preview and publish</li>
+        </ol>
+           
+          <div class="flier__container">
+            <div class="image_preview dragable" >
+                <img src="" alt="" id="the_image">
+                <div id="container1">
+                    
+                        <div class="image__inspect selector" id="draggable-elem">
+                         
+                            <img src="{% static '/images/inspect.png' %}" alt="">
+                            <img src="{% static '/images/inspect1.png' %}" alt="">
+                            <img src="{% static '/images/inspect2.png' %}" style="width: 20px;" alt="">
+                           
+                            <div class="dragable__display selector2">
+                            </div>
+                        </div>
+                   
+                  </div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content:flex-end;">
+            <a href="/avatar"><button type="button" style="background-color: transparent;color:white;">previous</button></a> <a><button type="button" id="next_button">Next</button></a>
+           </div>
+    </section>
+   </div>
+        
+</main>
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<div id="his_warrior">
+    hbdbdfbfn 
+</div>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.13.2.custom/jquery-ui.js' %}"></script>
+<script>
+window.onload = () => {
+    if (localStorage.getItem('flier')) { 
+        let file = JSON.parse(localStorage.getItem('flier')).file
+
+        document.getElementById('the_image').src = file
+    } else {
+        window.location.href = '/create'
+    }
+}
+
+document.getElementById('next_button').addEventListener('click', () => {
+    let flier_obj = JSON.parse(localStorage.getItem('flier')
+   let data = document.querySelector('.flier__container').innerHTML
+    flier_obj.htmlFile = data
+    localStorage.setItem('flier', JSON.stringify(flier_obj)) 
+ window.location.href = '/preview'
+})
+$(function(){
+  $( ".selector" ).draggable();
+})
+$(function(){
+  $( ".selector2" ).resizable();
+})
+//    let draggableElem = document.getElementById("draggable-elem");
+// let initialX = 0,
+//   initialY = 0;
+// let moveElement = false;
+// //Events Object
+// // let events = {
+//   mouse: {
+//     down: "mousedown",
+//     move: "mousemove",
+//     up: "mouseup",
+//   },
+//   touch: {
+//     down: "touchstart",
+//     move: "touchmove",
+//     up: "touchend",
+//   },
+// };
+// let deviceType = "";
+// //Detech touch device
+// const isTouchDevice = () => {
+//   try {
+//     //We try to create TouchEvent (it would fail for desktops and throw error)
+//     document.createEvent("TouchEvent");
+//     deviceType = "touch";
+//     return true;
+//   } catch (e) {
+//     deviceType = "mouse";
+//     return false;
+//   }
+// };
+// isTouchDevice();
+// //Start (mouse down / touch start)
+// draggableElem.addEventListener(events[deviceType].down, (e) => {
+//   e.preventDefault();
+//   //initial x and y points
+//   initialX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+//   initialY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+//   //Start movement
+//   moveElement = true;
+// });
+// //Move
+// draggableElem.addEventListener(events[deviceType].move, (e) => {
+//   //if movement == true then set top and left to new X andY while removing any offset
+//   if (moveElement) {
+//     e.preventDefault();
+//     let newX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+//     let newY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+//     draggableElem.style.top =
+//       draggableElem.offsetTop - (initialY - newY) + "px";
+//     draggableElem.style.left =
+//       draggableElem.offsetLeft - (initialX - newX) + "px";
+//     initialX = newX;
+//     initialY = newY;
+//   }
+// });
+// //mouse up / touch end
+// draggableElem.addEventListener(
+//   events[deviceType].up,
+//   (stopMovement = (e) => {
+//     moveElement = false;
+//   })
+// );
+
+// draggableElem.addEventListener("mouseleave", stopMovement);
+// draggableElem.addEventListener(events[deviceType].up, (e) => {
+//   moveElement = false;
+// });
+
+
+// display hidden div for image upload
+const drageableDisc = document.querySelector('.image__inspect')
+const displayDragable = document.querySelector('.dragable__display')
+ drageableDisc.addEventListener('dblclick',()=>{
+  drageableDisc.style.visibility = 'hidden'
+  displayDragable.style.visibility = 'visible'
+ })
+</script>
+</body>
+</html>

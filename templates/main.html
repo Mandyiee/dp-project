@@ -8,55 +8,18 @@
     <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
 	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.theme.css' %}">
+    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
     <title>DP</title>
 </head>
 <body>
-<header class="header-wrapper index-page">
-	<div class="site-header">
-		<div class="navigation-container main-nav">
-		<div class="bar-btn">&#9776;</div>
-			<nav>
-				<ul class="nav-menu">
-					<li><a href="./index.html">Create Flyer</a></li>
-					<li><a href="./trending.html">Trending</a></li>
-					<li><a href="./categories.html">Categories</a></li>
-					<li><a href="./createdp.html">Create DP flyer</a></li>
-					{% if user.is_authenticated  %}
-					<li><a href="signout">Sign-Out</a></li>
-					{% else %}
-					<li><a href="signup">Sign-Up</a></li>
-                    <li><a href="signin">Sign-In</a></li>
-					
-					{% endif %}
-					
-				</ul>
-			</nav>
-		</div>
-		<div class="search-menu">
-			<div class="search-input-container">
-			<input class="search-input" type="search" name="search" placeholder="Search">
-		    </div>
-		</div>
-		<div class="header-caption">
-			<p>
-				get <strong> customised 
-				<br> 
-				flyer </strong> for <strong> <br> your event </strong>
-			</p>
-		</div>
-		<div class="cta-buttons flex-center">
-		  <div class="btn-container">
-			<a class="cta-btn" href="./signup.html">create flyer</a>
-		 </div>
-		 <div class="btn-container">
-			<a class="cta-btn" href="./signup.html">get started</a>
-		 </div>
-		</div>
-	</div>
-</header>
-<main>
+
+
 	{% block content %}{% endblock content %}
-</main>
+
 <footer class="footer-wrapper index-page">
 	<div class="footer-nav-container">
 		<nav>
@@ -70,5 +33,7 @@
 	</div>
 </footer>
 <script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.13.2.custom/jquery-ui.js' %}"></script>
 </body>
 </html>
