@@ -1,30 +1,5 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
-  <body>
-    <header class="header-wrapper index-page browse__page">
-      <div class="site-header">
-        <div class="navigation-container main-nav">
-          <div class="bar-btn">&#9776;</div>
-          <nav>
-            <ul class="nav-menu">
-              <li><a href="./index.html">Create Flyer</a></li>
-              <li><a href="./trending.html">Trending</a></li>
-              <li><a href="./categories.html">Categories</a></li>
-              <li><a href="./createdp.html">Create DP flyer</a></li>
-              <li><a href="./signup.html">Sign Up</a></li>
-              <li><a href="./signin.html">Login</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="search-menu">
-          <div class="search-input-container">
-            <input
-              class="search-input"
-              type="search"
-              name="search"
-              placeholder="Search"
-            />
-          </div>
-        </div>
+
         
        
       </div>
@@ -33,46 +8,54 @@
       <div class="floating__condition">
         <h1>Browse Categories</h1>
         <div class="floating__div-content">
-          <a href="/category/politics">
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 30.png'%}" alt="" />
+        
+          <div class="floating__condition-divs" style="background-color:#000;">  <a href="/category/politics" ><img src="{% static 'images/Rectangle 30.png'%}" alt="" style="opacity:0.7;" /> 
             <h1 class="floating__items">politics</h1>
+          </a>
           </div>
-        </a>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 63.png'%}" alt="" />
+       
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/music"><img src="{% static 'images/Rectangle 63.png'%}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">music</h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 64.png'%}" alt="" />
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/business"><img src="{% static 'images/Rectangle 64.png'%}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">business</h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 65.png' %}" alt="" />
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/religion"><img src="{% static 'images/Rectangle 65.png' %}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">religion</h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 66.png'%}" alt="" />
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/food and drinks" ><img src="{% static 'images/Rectangle 66.png'%}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">food and drinks </h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 67.png'%}" alt="" />
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/art and culture" ><img src="{% static 'images/Rectangle 67.png'%}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">art and culture</h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 68.png'%}" alt="" />
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/movements" ><img src="{% static 'images/Rectangle 68.png'%}" alt="" style="opacity:0.7;"/>
            <h1 class="floating__items">movements</h1>
+          </a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 69.png'%}" alt="" />
-           <h1 class="floating__items">socials</h1>
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/socials" ><img src="{% static 'images/Rectangle 69.png'%}" alt="" style="opacity:0.7;"/>
+           <h1 class="floating__items">socials</h1></a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 70.png'%}" alt="" />
-           <h1 class="floating__items">fashion</h1>
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/fashion" ><img src="{% static 'images/Rectangle 70.png'%}" alt="" style="opacity:0.7;"/>
+           <h1 class="floating__items">fashion</h1></a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 71.png' %}" alt="" />
-           <h1 class="floating__items">film</h1>
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/film" ><img src="{% static 'images/Rectangle 71.png' %}" alt="" style="opacity:0.7;"/>
+           <h1 class="floating__items">film</h1></a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 72.png'%} " alt="" />
-           <h1 class="floating__items">others</h1>
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/party" ><img src="{% static 'images/Rectangle 73.png' %}  " alt="" style="opacity:0.7;"/>
+            <h1 class="floating__items">party</h1></a>
+           </div>
+          <div class="floating__condition-divs" style="background-color:#000;"><a href="/category/others" ><img src="{% static 'images/Rectangle 72.png'%} " alt="" style="opacity:0.7;"/>
+           <h1 class="floating__items">others</h1></a>
           </div>
-          <div class="floating__condition-divs"><img src="{% static 'images/Rectangle 73.png' %}  " alt="" />
-           <h1 class="floating__items">music</h1>
-          </div>
+          
         </div>
       </div>
     </main>
-    <div class="empty"></div>
+    <div class="empty" style="height: 1000px;"></div>
     {% endblock content %}

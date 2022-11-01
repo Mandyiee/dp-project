@@ -1,30 +1,5 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
-  <body>
-    <header class="header-wrapper index-page browse__page">
-      <div class="site-header">
-        <div class="navigation-container main-nav">
-          <div class="bar-btn">&#9776;</div>
-          <nav>
-            <ul class="nav-menu">
-              <li><a href="./index.html">Create Flyer</a></li>
-              <li><a href="./trending.html">Trending</a></li>
-              <li><a href="./categories.html">Categories</a></li>
-              <li><a href="./createdp.html">Create DP flyer</a></li>
-              <li><a href="./signup.html">Sign Up</a></li>
-              <li><a href="./signin.html">Login</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="search-menu">
-          <div class="search-input-container">
-            <input
-              class="search-input"
-              type="search"
-              name="search"
-              placeholder="Search"
-            />
-          </div>
-        </div>
+
         
        
       </div>
@@ -32,24 +7,26 @@
     <main class="floatin__div">
       <div class="floating__condition">
         <h1>Browse Categories</h1>
-        <div class="floating__div-content">
-          <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" />
-          <div class="floating__items floating__file">
-                <h2>Outpouring 2022</h2>
-              <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
-              <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
-              <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
-            </div>
-        </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" />
-            <div class="floating__items floating__file">
-              <h2>Outpouring 2022</h2>
-            <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
-            <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
-            <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
+      <div class="floating__div-content">
+      
+{% for flier in fliers %}
+<div class="floating__condition-divs" style="background-color:#000;"><img src="{{ flier.imageString }}" alt="" style="opacity:0.7;border-radius: 10px;"/>
+  <div class="floating__items floating__file">
+        <h2> {{ flier.event_name }}</h2>
+      <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
+      <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
+      <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
+    </div>
+</div> 
+{% empty %}
+<h1>
+  This page is empty
+</h1>
+{% endfor %}
+        
+          
           </div>
-          </div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" /> <div class="floating__items floating__file">
+          {% comment %} <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" /> <div class="floating__items floating__file">
                 <h2>Outpouring 2022</h2>
               <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
               <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
@@ -103,13 +80,14 @@
               <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
               <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
             </div></div>
-          <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" /> <div class="floating__items floating__file">
+          <div class="floating__condition-divs"><img src="./images/Rectangle 3.png" alt="" /> <div class="floating__items floating__file"> 
                 <h2>Outpouring 2022</h2>
               <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
               <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
               <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
             </div></div>
         </div>
+        {% endcomment %}
       </div>
     </main>
     <div class="empty"></div>

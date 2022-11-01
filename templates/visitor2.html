@@ -42,7 +42,7 @@
     </header>
     <main class="floatin__div" id="visitor">
       <div class="floating__condition">
-        <h1>Peter Obi Enugu Mega Rally</h1>
+        <h1>{{ userflier.event_name }}</h1>
         <div class="iconss">
             <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
             <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
@@ -50,10 +50,11 @@
             <span><i class="fa fa-share" aria-hidden="true"></i> share</span>
         </div>
         <div class="peter__obi-img">
-            <img src="" alt="" id="imgs">
+            <img src="{{userflier.flier_image.url}}" alt="" id="imgs">
+            
            <section>
-            <button class="generate">Download Now</button>
-            <a href="" id="wewe" download="demo.png">Download</a>
+            <button class="generate"><a href="{{userflier.flier_image.url}}" id="wewe" download="{{userflier.flier_image.url}}">Download</a>
+            </button>
            </section>
            <p style="color:#da00de;">share on social media <i class="fa fa-share" aria-hidden="true"></i></p>
         </div>
@@ -76,16 +77,7 @@
     </footer>
     <script src="{% static 'js/header.js' %}"></script>
     <script>
-      window.onload = (e) => {
-        let bloom = localStorage.getItem('data')
-        let imgs = document.getElementById('imgs')
-        let container = document.querySelector('.peter__obi-img')
-        imgs.src = 'data:application/octet-stream;base64,' + bloom
-        container.style.backgroundImage = "url(" + atob(imgs.src) + ")";
-        let alink = document.getElementById('wewe')
-        wewe.href = imgs.src
-        console.log(imgs.src)
-      }
+   
     </script>
   </body>
 </html>

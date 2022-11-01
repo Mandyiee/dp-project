@@ -1,11 +1,77 @@
-{% extends "account/base.html" %}
 
+{% load static %}
 {% load i18n %}
+{% load account %}
+{% load account socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>signin</title>
+</head>
+<body>
+<style>
+  .signin-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-height: 300px;
+    height: fit-content;
+    color: black;
+background-color: #14002e;
+  }
+  .signin-panel > * > *{
+    text-align: center;
+    padding: 1rem 10px;
+    color: #eee;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000000;
+  }
+</style>
+<header class="header-wrapper index-page signin-page">
+	<div class="site-header">
 
-{% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
+		<div class="navigation-container main-nav">
+			<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					
+				</ul>
+			</nav>
+		</div>
+
+		<div class="signin-panel" >
+			<div class="signin-wrapper">
+
+               
+                {% if messages %}
+                <div>
+                  <strong>Messages:</strong>
+                  <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                 
+               
 
 {% block content %}
-    <h1>{% trans "E-mail Addresses" %}</h1>
+<h1>{% trans "E-mail Addresses" %}</h1>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
 
@@ -13,27 +79,27 @@
 {% csrf_token %}
 <fieldset class="blockLabels">
 
-  {% for emailaddress in user.emailaddress_set.all %}
+{% for emailaddress in user.emailaddress_set.all %}
 <div class="ctrlHolder">
-      <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
+  <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
 
-      <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+  <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
 
 {{ emailaddress.email }}
-    {% if emailaddress.verified %}
-    <span class="verified">{% trans "Verified" %}</span>
-    {% else %}
-    <span class="unverified">{% trans "Unverified" %}</span>
-    {% endif %}
-      {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+{% if emailaddress.verified %}
+<span class="verified">{% trans "Verified" %}</span>
+{% else %}
+<span class="unverified">{% trans "Unverified" %}</span>
+{% endif %}
+  {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
 </label>
 </div>
-  {% endfor %}
+{% endfor %}
 
 <div class="buttonHolder">
-      <button class="secondaryAction" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
-      <button class="secondaryAction" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
-      <button class="primaryAction" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+  <button class="secondaryAction" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+  <button class="secondaryAction" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+  <button class="primaryAction" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
 </div>
 
 </fieldset>
@@ -44,15 +110,15 @@
 
 {% endif %}
 
-  {% if can_add_email %}
-    <h2>{% trans "Add E-mail Address" %}</h2>
+{% if can_add_email %}
+<h2>{% trans "Add E-mail Address" %}</h2>
 
-    <form method="post" action="{% url 'account_email' %}" class="add_email">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
-    </form>
-  {% endif %}
+<form method="post" action="{% url 'account_email' %}" class="add_email">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+</form>
+{% endif %}
 
 {% endblock %}
 
@@ -60,15 +126,42 @@
 {% block extra_body %}
 <script type="text/javascript">
 (function() {
-  var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
-  var actions = document.getElementsByName('action_remove');
-  if (actions.length) {
-    actions[0].addEventListener("click", function(e) {
-      if (! confirm(message)) {
-        e.preventDefault();
-      }
-    });
+var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+var actions = document.getElementsByName('action_remove');
+if (actions.length) {
+actions[0].addEventListener("click", function(e) {
+  if (! confirm(message)) {
+    e.preventDefault();
   }
+});
+}
 })();
 </script>
 {% endblock %}
+		</div>
+		</div>
+</header>
+
+<main>
+	<section class="section-wrapper">
+		<!-- empty for now -->
+	</section>
+
+</main>
+
+
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+</body>
+</html>

@@ -1,31 +1,120 @@
-{% extends "account/base.html" %}
 
+{% load static %}
 {% load i18n %}
 {% load account %}
+{% load account socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>signin</title>
+</head>
+<body>
+<style>
+  .signin-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-height: 300px;
+    height: fit-content;
+    color: black;
+background-color: #14002e;
+  }
+  .signin-panel > * > *{
+    text-align: center;
+    padding: 1rem 10px;
+    color: #eee;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000000;
+  }
+</style>
+<header class="header-wrapper index-page signin-page">
+	<div class="site-header">
 
-{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+		<div class="navigation-container main-nav">
+			<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					
+				</ul>
+			</nav>
+		</div>
+
+		<div class="signin-panel" >
+			<div class="signin-wrapper">
+
+               
+                {% if messages %}
+                <div>
+                  <strong>Messages:</strong>
+                  <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                 
+                {% block content %}
+                <h1>{% trans "Confirm E-mail Address" %}</h1>
+                
+                {% if confirmation %}
+                
+                {% user_display confirmation.email_address.user as user_display %}
+                
+                <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+                
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                {% csrf_token %}
+                    <button type="submit">{% trans 'Confirm' %}</button>
+                </form>
+                
+                {% else %}
+                
+                {% url 'account_email' as email_url %}
+                
+                <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+                
+                {% endif %}
+                
+                {% endblock %}
+		</div>
+		</div>
+</header>
+
+<main>
+	<section class="section-wrapper">
+		<!-- empty for now -->
+	</section>
+
+</main>
 
 
-{% block content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
-
-{% if confirmation %}
-
-{% user_display confirmation.email_address.user as user_display %}
-
-<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
-</form>
-
-{% else %}
-
-{% url 'account_email' as email_url %}
-
-<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
-{% endif %}
-
-{% endblock %}
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+</body>
+</html>

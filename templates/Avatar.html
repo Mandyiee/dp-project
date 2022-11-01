@@ -1,54 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
-    <link href="{% static 'css/index.css' %}" rel="stylesheet">
-	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-	<link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.structure.css' %}">
-    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.theme.css' %}">
-    <link rel="stylesheet" href="{% static './js/jquery-ui-1.13.2.custom/jquery-ui.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>set avatar</title>
-   
-</head>
-<body>
-    
-	
-<header class="header-wrapper dashboard-page">
-	<div class="site-header">
-		<div class="navigation-container main-nav">
-		<div class="bar-btn">&#9776;</div>
-			<nav>
-				<ul class="nav-menu">
-					<li><a href="./index.html">Create Flyer</a></li>
-					<li><a href="./trending.html">Trending</a></li>
-					<li><a href="./categories.html">Categories</a></li>
-					<li><a href="./createdp.html">Create DP flyer</a></li>
-					
-				</ul>
-				
-					<h4 class="logged__in">Chinonso<i class="fa fa-chevron-right " style="font-size: 90%; margin:auto; margin-left: 0.3rem;" aria-hidden="true"></i>
-						<ul class="logged__out">
-							<li>dashboard</li>
-							<ul class="displayUL" style="padding: 0;border:none;margin: 0; height: auto;">
-								<li>DP banners <i class="fa fa-chevron-right chevy" aria-hidden="true" style="margin-left: 1rem;"></i></li> 
-								<aside class="mainaside">
-									<li>All My Dp</li>
-									<li>Create</li>
-								</aside>
-							</ul>
-							<li>My profile</li>
-							<li>Settings</li>
-							<li>Logout</li>
-						</ul>
-					</h4>
-				
-			</nav>
-		</div>
+<style>
+    .search-menu {
+        display: none;
+    }
+</style>
+{% extends 'main.html' %} {% block content %} {% load static %}
+
 		
 		
 
@@ -75,18 +31,18 @@
     <button type="button" class="button__create" style="display: none;">Create</button>
     
    <div class="create__dp-section">
-    <h2>create DP</h2>
-    <section class="create__dp-container">
-        <ol class="create__dp-nav__section">
+    <h2>Create Your DP</h2>
+    <section class="create__dp-container" style="display: flex; flex-direction: column;align-content: center;justify-content: space-around;align-items: center;">
+        <ul class="create__dp-nav__section">
             <li>basic information</li>
             <li>set avatar location</li>
             <li>set name preferance</li>
             <li>preview and publish</li>
-        </ol>
+        </ul>
            
           <div class="flier__container">
             <div class="image_preview dragable" >
-                <img src="" alt="" id="the_image">
+                <img src="" alt="" id="the_image" style="width:100%;height:100%;">
                 <div id="container1">
                     
                         <div class="image__inspect selector" id="draggable-elem">
@@ -103,7 +59,7 @@
             </div>
           </div>
           <div style="display: flex; justify-content:flex-end;">
-            <a href="/avatar"><button type="button" style="background-color: transparent;color:white;">previous</button></a> <a><button type="button" id="next_button">Next</button></a>
+            <a href="/create"><button type="button" style="background-color: transparent;color:white;">previous</button></a> <a><button type="button" id="next_button">Next</button></a>
            </div>
     </section>
    </div>
@@ -122,7 +78,7 @@
 	</div>
 </footer>
 <div id="his_warrior">
-    hbdbdfbfn 
+    
 </div>
 <script src="{% static 'js/header.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
@@ -141,9 +97,23 @@ window.onload = () => {
 document.getElementById('next_button').addEventListener('click', () => {
     let flier_obj = JSON.parse(localStorage.getItem('flier'))
    let data = document.querySelector('.flier__container').innerHTML
+   let image_left = document.querySelector('.image__inspect').style.left.replace("px"," ")
+   let image_top = document.querySelector('.image__inspect').style.top.replace("px"," ")
+   let image_height = document.querySelector('.dragable__display').style.height.replace("px"," ")
+   let image_width = document.querySelector('.dragable__display').style.width.replace("px"," ")
+    let flier_width = document.querySelector('.flier__container').clientWidth
+    let flier_height = document.querySelector('.flier__container').clientHeight
+   let left = (Number(image_left) / Number(flier_width))*100
+   let top = (Number(image_top) / Number(flier_height))*100
+   console.log(flier_height,flier_width)
+   console.log(left,top)
+   flier_obj.image_left = left
+   flier_obj.image_top = top
+   flier_obj.image_height = (Number(image_height)/flier_height)
+   flier_obj.image_width = (Number(image_width)/flier_width)
     flier_obj.htmlFile = data
     localStorage.setItem('flier', JSON.stringify(flier_obj)) 
- window.location.href = '/preview'
+ //window.location.href = '/publish'
 })
 $(function(){
   $( ".selector" ).draggable();
@@ -228,5 +198,4 @@ const displayDragable = document.querySelector('.dragable__display')
   displayDragable.style.visibility = 'visible'
  })
 </script>
-</body>
-</html>
+{% endblock content %}

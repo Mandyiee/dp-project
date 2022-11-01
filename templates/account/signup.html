@@ -1,21 +1,124 @@
-{% extends "account/base.html" %}
 
+
+
+{% load static %}
 {% load i18n %}
+{% load account %}
+{% load account socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon"/>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <title>signin</title>
+</head>
+<body>
+<style>
+  .signin-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-height: 300px;
+    height: fit-content;
+    color: black;
+background-color: #14002e;
+padding: 0.5rem;
+  }
+  .signin-panel > * > *{
+    text-align: center;
+    padding: 1rem 10px;
+    color: #eee;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+  }
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+  #signup_form > p > label {
+    font-size: 18px;
+  }
+</style>
+<header class="header-wrapper index-page signin-page">
+	<div class="site-header">
 
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+		<div class="navigation-container main-nav">
+			<div class="bar-btn">&#9776;</div>
+			<nav>
+				<ul class="nav-menu">
+					
+				</ul>
+			</nav>
+		</div>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+		<div class="signin-panel" >
+			<div class="signin-wrapper">
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+               
+                {% if messages %}
+                <div>
+                
+                  <ul>
+                    {% for message in messages %}
+                    <li style="color: #f00;">{{message}}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                 
+                {% block content %}
+                <h1>{% trans "Sign Up" %}</h1>
+                
+                <p>{% blocktrans %}Already have an account? Then please <a style="color: #BF08C2;" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+                
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                  
+                  <div class="submit-cta">
+                    <button class="primaryAction"  type="submit">{% trans "Sign Up" %}</button>
+                  </div>
+                 
+                </form>
+                
+                {% endblock %}
+                
+		</div>
+		</div>
+</header>
 
-{% endblock %}
+<main>
+	<section class="section-wrapper">
+		<!-- empty for now -->
+	</section>
+
+</main>
+
+
+<footer class="footer-wrapper index-page">
+	<div class="footer-nav-container">
+		<nav>
+			<ul class="flex-center footer-flex">
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+				<li><a href="#">site map</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+<script src="{% static 'js/header.js' %}"></script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 @import url("boiler-plate.css");
 
 @import url("signup.css");
@@ -8,6 +10,9 @@
 /******************
 index page styles
 ******************/
+* {
+  font-family: 'Lato', sans-serif !important;
+}
 .search-menu {
   padding: 1rem;
   /*margin-top:4rem;
@@ -316,7 +321,7 @@ flex:50%;
   text-align: initial;
   margin: 2rem 0;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.31), rgba(0, 0, 0, 0.31)),
-    url(../images/createfooter.png);
+    url("/static/images/createfooter.png");
 
   border-radius: 11px;
   -moz-box-shadow: 0px 4px 29px #eeceef;
@@ -326,7 +331,8 @@ flex:50%;
   height: 150px;
 }
 .empty {
-  height: 1000px;
+  height: fit-content;
+  min-height: 100px;
 }
 
 .floating__condition-divs {
@@ -624,7 +630,7 @@ dashboard-container
   background: rgba(217, 217, 217, 0.34);
 }
 .create__dp-container form label {
-  font-family: "Poppins";
+  font-family: 'Montserrat', sans-serif !important;
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
@@ -795,7 +801,7 @@ dashboard-container
   top: 0;
   left: 0;
   width: 100%;
-  /* height: 100%; */
+  height: 100%; 
 }
 .image__inspect {
   width: 100px;

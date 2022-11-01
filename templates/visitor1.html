@@ -1,17 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon" />
-  <link href="{% static 'css/index.css' %}" rel="stylesheet">
-  <link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <style>
+<style>
+  .search-menu {
+      display: none;
+  }
+</style>
+{% extends 'main.html' %} {% block content %} {% load static %}
+<style>
     article img {
       width: 100vw !important;
       height: 100vh !important;
@@ -30,42 +23,16 @@
       overflow: hidden;
       background: transparent;
     }
-    
+  
+
   </style>
-  <title>DP</title>
-</head>
-
-<body>
-  <header class="header-wrapper index-page browse__page">
-    <div class="site-header">
-      <div class="navigation-container main-nav">
-        <div class="bar-btn">&#9776;</div>
-        <nav>
-          <ul class="nav-menu">
-            <li><a href="./index.html">Create Flyer</a></li>
-            <li><a href="./trending.html">Trending</a></li>
-            <li><a href="./categories.html">Categories</a></li>
-            <li><a href="./createdp.html">Create DP flyer</a></li>
-            <li><a href="./signup.html">Sign Up</a></li>
-            <li><a href="./signin.html">Login</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="search-menu">
-        <div class="search-input-container">
-          <input class="search-input" type="search" name="search" placeholder="Search" />
-        </div>
-      </div>
-
-
     </div>
   </header>
   <main class="floatin__div" id="visitor">
     <div class="floating__condition">
-      <h1>Peter Obi Enugu Mega Rally</h1>
+      <h1>{{ flier.event_name }}</h1>
       <div class="iconss">
-        <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
-        <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
+        <span><i class="fa fa-eye" aria-hidden="true"></i> {{ flier.no_of_clicks }}</span>
         <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
         <span><i class="fa fa-share" aria-hidden="true"></i> share</span>
       </div>
@@ -75,21 +42,18 @@
         </div>
         <section>
 
-          <form action="" method="POST">
+          <form action="/visitor1/{{flier.id}}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="name">enter your name</label><input type="text" name="attendee_name" required>
             <label for="flier-img">
               <input type="file" name="attendee_image" id="flier-img" required>
             </label>
 
-<input type="text" name="htmlValue" id="hv">
-<input type="text" name="b64Value" id="b64">
+
             <button class="generate" type="submit">Generate DP</button>
           </form>
         </section>
-        <article>
-<img src="" alt="" srcset="" id="demos">
-        </article>
+        
       </div>
     </div>
 
@@ -111,11 +75,7 @@
   <script src="{% static 'js/header.js' %}"></script>
   <script>
     //file = document.querySelector('input[type=file]')
-    let style
-    $.get('/static/css/index.css', function (resp) {
-      // resp now should contain your CSS file content.
-  let style = resp
-  });
+   
   
     let form = document.querySelector('form')
     let fileinput = document.querySelector('input[type=file]')
@@ -130,303 +90,13 @@
         container.style.backgroundImage = "url(" + reader.result + ")";
         container.style.backgroundSize = '100% 100%'
       }, false);
-      document.querySelector('input[name=htmlValue]').value = document.querySelector('.flier_con').innerHTML
-      document.querySelector('input[name=b64Value]').value = btoa(document.querySelector('.flier_con').innerHTML)
-     
+      
     }
 
-    form.onsubmit = (e) => {
-      e.preventDefault()
-      
-      const json = {
-        html: document.querySelector('.flier_con').innerHTML,
-        css: style
-
-      };
-      
-      const username = "d8a07ff5-e4c8-480e-8203-3791c1f52b79";
-      const password = "b3203f1b-9c4e-4588-ac7f-5d644e2e6bbb";
-      
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(json),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa(username + ":" + password)
-        }
-      }
-      
-      fetch('https://hcti.io/v1/image', options)
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            return Promise.reject(res.status);
-          }
-        })
-        .then(data => {
-          // Image URL is available here
-          document.getElementById('demos').src = data.url
-          console.log(data.url)
-        })
-        .catch(err => console.error(err));
-      
-    } 
-         
-      // document.querySelector('article').textContent= document.querySelector('.flier_con').innerHTML
-
-      // const body = document.querySelector('article')
-
-      // const canvas = document.createElement("canvas");
-      // const ctx = canvas.getContext("2d");
-      // canvas.width = canvas.height = 500;
-      // const targetImg = document.createElement("img");
-      // body.appendChild(targetImg);
-      // const ble =   document.querySelector('.flier_con').innerHTML
-      // const newImg = new Image()
-      // newImg.addEventListener("load", onNewImageLoad);
-      // newImg.src =
-      //   "data:image/svg+xml," +
-      //   encodeURIComponent(
-      //     `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
-      //       <foreignObject width="100%" height="100%">
-      //         <div xmlns="http://www.w3.org/1999/xhtml">   
-      //       ${ble}
-      //         </div>
-      //       </foreignObject></svg>`
-      //   );
-      
-     
-      // function onNewImageLoad() {
-      //   console.log(12345)
-      //   ctx.drawImage(this, 0, 0);
-      //   console.log(canvas.toDataURL())
-      //   targetImg.src = canvas.toDataURL();
-      //   console.log(canvas.toDataURL())
-      //   console.log(123)
-      // }
-      
+   
     
   </script>
-  <!-- <script>
-    $(function() { 
-      $("form").submit(function(e) {
-        e.preventDefault()
-          html2canvas($(".flier_con"), {
-              onrendered: function(canvas) {
-                  theCanvas = canvas;
-                  document.body.appendChild(canvas);
-  
-                  canvas.toBlob(function(blob) {
-            saveAs(blob, "Dashboard.png"); 
-          });
-              }
-          });
-      });
-  }); 
-  </script> -->
-</body>
 
-</html>
+  {% endblock content %}
 
 
-
-
-<!-- {% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="{% static '/images/huloex-logo.png' %}" type="image/icon" />
-  <link href="{% static 'css/index.css' %}" rel="stylesheet">
-  <link href="{% static '/font-awesome/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-  <style>
-    article img {
-      width: 100vw !important;
-      height: 100vh !important;
-    }
-    .image_preview {
-      height:100%;
-      width:100%;
-    }
-    .image_preview #the_image {
-      height:100%;
-      width:100%;
-    }
-    #hv {
-      width: 0px;
-      height: 0px;
-      overflow: hidden;
-      background: transparent;
-    }
-  </style>
-  <title>DP</title>
-</head>
-
-<body>
-  <header class="header-wrapper index-page browse__page">
-    <div class="site-header">
-      <div class="navigation-container main-nav">
-        <div class="bar-btn">&#9776;</div>
-        <nav>
-          <ul class="nav-menu">
-            <li><a href="./index.html">Create Flyer</a></li>
-            <li><a href="./trending.html">Trending</a></li>
-            <li><a href="./categories.html">Categories</a></li>
-            <li><a href="./createdp.html">Create DP flyer</a></li>
-            <li><a href="./signup.html">Sign Up</a></li>
-            <li><a href="./signin.html">Login</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="search-menu">
-        <div class="search-input-container">
-          <input class="search-input" type="search" name="search" placeholder="Search" />
-        </div>
-      </div>
-
-
-    </div>
-  </header>
-  <main class="floatin__div" id="visitor">
-    <div class="floating__condition">
-      <h1>Peter Obi Enugu Mega Rally</h1>
-      <div class="iconss">
-        <span><i class="fa fa-eye" aria-hidden="true"></i> 544 views</span>
-        <span><i class="fa fa-users" aria-hidden="true"></i> 54 views</span>
-        <span><i class="fa fa-commenting-o" aria-hidden="true"></i> Comments</span>
-        <span><i class="fa fa-share" aria-hidden="true"></i> share</span>
-      </div>
-      <div class="peter__obi-img">
-        <div class="flier_con" id="abeg" style="height:500px;width:80vh;position:relative;z-index:1000;">
-          {{ flier.htmlFile|safe }}
-        </div>
-        <section>
-
-          <form action="/visitor2/{{flier.id}}" method="POST">
-            {% csrf_token %}
-            <label for="name">enter your name</label><input type="text" required>
-            <label for="flier-img">
-              <input type="file" name="" id="flier-img" required>
-            </label>
-
-<input type="text" name="htmlValue" id="hv">
-            <button class="generate" type="submit">Generate DP</button>
-          </form>
-        </section>
-        <article>
-<button id="download">download</button>
-        </article>
-      </div>
-    </div>
-
-    </div>
-  </main>
-  <div class="empty visitor__empty"> </div>
-  <footer class="footer-wrapper index-page">
-    <div class="footer-nav-container">
-      <nav>
-        <ul class="flex-center footer-flex">
-          <li><a href="#">site map</a></li>
-          <li><a href="#">site map</a></li>
-          <li><a href="#">site map</a></li>
-          <li><a href="#">site map</a></li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
-  <script src="{% static 'js/header.js' %}"></script>
-  <script>
-    //file = document.querySelector('input[type=file]')
-    let form = document.querySelector('form')
-    let fileinput = document.querySelector('input[type=file]')
-    fileinput.onchange = () => {
-      
-      const imgPath = document.querySelector('input[type=file]').files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(imgPath)
-
-      reader.addEventListener("load", function () {
-        let container = document.querySelector('.dragable__display.selector2.ui-resizable')
-        container.style.backgroundImage = "url(" + reader.result + ")";
-        container.style.backgroundSize = '100% 100%'
-      }, false);
-      document.querySelector('input[name=htmlValue]').value = document.querySelector('.flier_con').innerHTML
-      
-    
-    }
-
-    $(document).ready(function () {
-      $('#download').click(function () {
-          html2canvas(document.getElementById('canvas'), {
-              onrendered: function (canvas) {
-                  var imgData = canvas.toDataURL('image/png');
-                  var doc = new jsPDF('p', 'mm');
-                  doc.addImage(imgData, 'PNG', 100, 100);
-                  doc.save('download.pdf');
-              }
-          });
-      });
-  });   
-      // document.querySelector('article').textContent= document.querySelector('.flier_con').innerHTML
-
-      // const body = document.querySelector('article')
-
-      // const canvas = document.createElement("canvas");
-      // const ctx = canvas.getContext("2d");
-      // canvas.width = canvas.height = 500;
-      // const targetImg = document.createElement("img");
-      // body.appendChild(targetImg);
-      // const ble =   document.querySelector('.flier_con').innerHTML
-      // const newImg = new Image()
-      // newImg.addEventListener("load", onNewImageLoad);
-      // newImg.src =
-      //   "data:image/svg+xml," +
-      //   encodeURIComponent(
-      //     `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
-      //       <foreignObject width="100%" height="100%">
-      //         <div xmlns="http://www.w3.org/1999/xhtml">   
-      //       ${ble}
-      //         </div>
-      //       </foreignObject></svg>`
-      //   );
-      
-     
-      // function onNewImageLoad() {
-      //   console.log(12345)
-      //   ctx.drawImage(this, 0, 0);
-      //   console.log(canvas.toDataURL())
-      //   targetImg.src = canvas.toDataURL();
-      //   console.log(canvas.toDataURL())
-      //   console.log(123)
-      // }
-      
-    
-  </script>
-  <script>
-    $(function() { 
-      $("form").submit(function(e) {
-        e.preventDefault()
-          html2canvas($(".flier_con"), {
-              onrendered: function(canvas) {
-                  theCanvas = canvas;
-                  document.body.appendChild(canvas);
-  
-                  canvas.toBlob(function(blob) {
-            saveAs(blob, "Dashboard.png"); 
-          });
-              }
-          });
-      });
-  }); 
-  </script> 
-</body>
-
-</html> -->
